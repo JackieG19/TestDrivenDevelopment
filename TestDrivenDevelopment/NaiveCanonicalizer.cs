@@ -11,14 +11,15 @@ namespace TestDrivenDevelopment
     public static string GetCanonicalForm(string searchTerm)
     {
       //if(string.IsNullOrWhiteSpace(searchTerm))
-			if(searchTerm==null)
-				throw new ArgumentNullException("searchTerm");
+	if(searchTerm==null)
+		throw new ArgumentNullException("searchTerm");
       
       return searchTerm
-        .Split(new[] {' '})
+        .Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries)
         .Select(x => x.ToUpper())
         .OrderBy(x => x)
-        .Aggregate((x, y) => x + " " + y)
+        .Aggregate("", (x, y) => x + " " + y)
+	.Trim();
      }
    }
 }
