@@ -10,6 +10,10 @@ namespace TestDrivenDevelopment
   {
     public static string GetCanonicalForm(string searchTerm)
     {
+      //if(string.IsNullOrWhiteSpace(searchTerm))
+			if(searchTerm==null)
+				throw new ArgumentNullException("searchTerm");
+      
       return searchTerm
         .Split(new[] {' '})
         .Select(x => x.ToUpper())
