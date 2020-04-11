@@ -10,14 +10,14 @@ namespace TDD
 	[TestFixture]
 	public class TicTacToeTests
 	{
-		[Tests] // 1
+		[Tests]
 		public void CreateGame_ZeroMoves()
 		{
 			Game game = new Game();
 			Assert.AreEqual(0, game.MovesCounter);
 		}
 		
-		[Tests] // 2
+		[Tests]
 		public void MakeMove_CounterShifts()
 		{
 			Game game = new Game();
@@ -25,7 +25,7 @@ namespace TDD
 			Assert.AreEqual(1, game.MovesCounter);
 		}
 		
-		[Tests] // 3
+		[Tests]
 		public void MakeInvaildMove_ThrowsException()
 		{
 			Assert.Throws<ArgumentOutOfRangeException>(() =>
@@ -35,7 +35,7 @@ namespace TDD
 			});
 		}
 		
-		[Tests] // 4
+		[Tests]
 		public void MakeInvaildMove_ThrowsException()
 		{
 			Assert.Throws<InvaildOperationException>(() =>
@@ -44,6 +44,20 @@ namespace TDD
 				game.MakeMove(1);
 				game.MakeMove(1);
 			});
+		}
+	}
+	
+	public class Game
+	{
+		public int MovesCounter { get; private set; }
+		
+		public void MakeMove(int index)
+		{
+			if(index < 1 || index > 9)
+			{
+				throw new ArgumentOutOfRangeException();
+			}
+			MovesCounter++;
 		}
 	}
 }
